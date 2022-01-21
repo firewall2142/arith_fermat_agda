@@ -4,9 +4,9 @@ open import connectives
 open import leibniz
 open import logic
 open import relations
-postulate bool : Set
-postulate true : bool
-postulate false : bool
+data bool : Set where
+  true : bool
+  false : bool
 postulate match::bool::prop : {l : Level} ->  (return : (bool -> Set l)) -> (return true) -> (return false) -> forall (z : bool) -> return z
 postulate match::bool::type : {l : Level} -> (return : Set l) -> return -> return -> bool -> return
 postulate axiom::match::bool::type::true : {i : Level} → (return : Set i) -> forall (case::true : return) -> forall (case::false : return) -> connectives.equal (return) (match::bool::type (return) case::true case::false true) case::true

@@ -5,9 +5,9 @@ open import connectives
 open import leibniz
 open import logic
 open import relations
-postulate nat : Set
-postulate O : nat
-postulate S : nat -> nat
+data nat : Set where
+  O : nat
+  S : nat -> nat
 postulate match::nat::prop : {i : Level} → forall (return : (nat -> Set i)) -> (return O) -> (forall (n : nat) -> return (S n)) -> forall (z : nat) -> return z
 postulate match::nat::type : {i : Level} → (return : Set i) -> return -> (nat -> return) -> nat -> return
 postulate axiom::match::nat::type::O : {i : Level} → (return::type : Set i) -> forall (case::O : return::type) -> forall (case::S : (nat -> return::type)) -> connectives.equal (return::type) (match::nat::type (return::type) case::O case::S O) case::O
