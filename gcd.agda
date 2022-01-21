@@ -10,25 +10,25 @@ open import primes
 postulate gcd::aux : nat.nat -> nat.nat -> nat.nat -> nat.nat
 postulate gcd::aux::body : nat.nat -> nat.nat -> nat.nat -> nat.nat
 postulate axiom::gcd::aux : forall (p : nat.nat) -> connectives.equal (nat.nat -> nat.nat -> nat.nat) (gcd::aux p) (nat.filter::nat::type (nat.nat -> nat.nat -> nat.nat) gcd::aux::body p)
-eq::gcd::aux : _
-eq::gcd::aux = \(p : nat.nat) -> ((((connectives.equal::leibniz) (nat.nat -> nat.nat -> nat.nat)) (gcd::aux p)) (nat.filter::nat::type (nat.nat -> nat.nat -> nat.nat) gcd::aux::body p)) ((axiom::gcd::aux) (p))
+eq::gcd::aux : {j : Level} -> _
+eq::gcd::aux {j} = \(p : nat.nat) -> ((((connectives.equal::leibniz {_} {j}) (nat.nat -> nat.nat -> nat.nat)) (gcd::aux p)) (nat.filter::nat::type (nat.nat -> nat.nat -> nat.nat) gcd::aux::body p)) ((axiom::gcd::aux) (p))
 
-sym::eq::gcd::aux : _
-sym::eq::gcd::aux = \(p : nat.nat) -> ((((leibniz.sym::leibniz) (nat.nat -> nat.nat -> nat.nat)) (gcd::aux p)) (nat.filter::nat::type (nat.nat -> nat.nat -> nat.nat) gcd::aux::body p)) ((eq::gcd::aux) (p))
+sym::eq::gcd::aux : {j : Level} -> _
+sym::eq::gcd::aux {j} = \(p : nat.nat) -> ((((leibniz.sym::leibniz {_} {j}) (nat.nat -> nat.nat -> nat.nat)) (gcd::aux p)) (nat.filter::nat::type (nat.nat -> nat.nat -> nat.nat) gcd::aux::body p)) ((eq::gcd::aux) (p))
 
 postulate axiom::gcd::aux::body::O : connectives.equal (nat.nat -> nat.nat -> nat.nat) (gcd::aux::body nat.O) (\(m : nat.nat) -> \(n : nat.nat) -> m)
-eq::gcd::aux::body::O : _
-eq::gcd::aux::body::O = ((((connectives.equal::leibniz) (nat.nat -> nat.nat -> nat.nat)) (gcd::aux::body nat.O)) (\(m : nat.nat) -> \(n : nat.nat) -> m)) (axiom::gcd::aux::body::O)
+eq::gcd::aux::body::O : {j : Level} -> _
+eq::gcd::aux::body::O {j} = ((((connectives.equal::leibniz {_} {j}) (nat.nat -> nat.nat -> nat.nat)) (gcd::aux::body nat.O)) (\(m : nat.nat) -> \(n : nat.nat) -> m)) (axiom::gcd::aux::body::O)
 
-sym::eq::gcd::aux::body::O : _
-sym::eq::gcd::aux::body::O = ((((leibniz.sym::leibniz) (nat.nat -> nat.nat -> nat.nat)) (gcd::aux::body nat.O)) (\(m : nat.nat) -> \(n : nat.nat) -> m)) (eq::gcd::aux::body::O)
+sym::eq::gcd::aux::body::O : {j : Level} -> _
+sym::eq::gcd::aux::body::O {j} = ((((leibniz.sym::leibniz {_} {j}) (nat.nat -> nat.nat -> nat.nat)) (gcd::aux::body nat.O)) (\(m : nat.nat) -> \(n : nat.nat) -> m)) (eq::gcd::aux::body::O)
 
 postulate axiom::gcd::aux::body::S : forall (p : nat.nat) -> connectives.equal (nat.nat -> nat.nat -> nat.nat) (gcd::aux::body (nat.S p)) (\(m : nat.nat) -> \(n : nat.nat) -> bool.match::bool::type (nat.nat) n (gcd::aux p n (div_mod.mod m n)) (primes.dividesb n m))
-eq::gcd::aux::body::S : _
-eq::gcd::aux::body::S = \(p : nat.nat) -> ((((connectives.equal::leibniz) (nat.nat -> nat.nat -> nat.nat)) (gcd::aux::body (nat.S p))) (\(m : nat.nat) -> \(n : nat.nat) -> bool.match::bool::type (nat.nat) n (gcd::aux p n (div_mod.mod m n)) (primes.dividesb n m))) ((axiom::gcd::aux::body::S) (p))
+eq::gcd::aux::body::S : {j : Level} -> _
+eq::gcd::aux::body::S {j} = \(p : nat.nat) -> ((((connectives.equal::leibniz {_} {j}) (nat.nat -> nat.nat -> nat.nat)) (gcd::aux::body (nat.S p))) (\(m : nat.nat) -> \(n : nat.nat) -> bool.match::bool::type (nat.nat) n (gcd::aux p n (div_mod.mod m n)) (primes.dividesb n m))) ((axiom::gcd::aux::body::S) (p))
 
-sym::eq::gcd::aux::body::S : _
-sym::eq::gcd::aux::body::S = \(p : nat.nat) -> ((((leibniz.sym::leibniz) (nat.nat -> nat.nat -> nat.nat)) (gcd::aux::body (nat.S p))) (\(m : nat.nat) -> \(n : nat.nat) -> bool.match::bool::type (nat.nat) n (gcd::aux p n (div_mod.mod m n)) (primes.dividesb n m))) ((eq::gcd::aux::body::S) (p))
+sym::eq::gcd::aux::body::S : {j : Level} -> _
+sym::eq::gcd::aux::body::S {j} = \(p : nat.nat) -> ((((leibniz.sym::leibniz {_} {j}) (nat.nat -> nat.nat -> nat.nat)) (gcd::aux::body (nat.S p))) (\(m : nat.nat) -> \(n : nat.nat) -> bool.match::bool::type (nat.nat) n (gcd::aux p n (div_mod.mod m n)) (primes.dividesb n m))) ((eq::gcd::aux::body::S) (p))
 
 gcd : _
 gcd = \(n : nat.nat) -> \(m : nat.nat) -> bool.match::bool::type (nat.nat) (gcd::aux n m n) (gcd::aux m n m) (nat.leb n m)

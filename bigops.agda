@@ -21,32 +21,32 @@ sameF::p::le = \(A : Set) -> \(p : nat.nat -> bool.bool) -> \(f : nat.nat -> A) 
 postulate bigop : (H : Set) -> nat.nat -> (nat.nat -> bool.bool) -> H -> (H -> H -> H) -> (nat.nat -> H) -> H
 postulate bigop::body : (H : Set) -> nat.nat -> (nat.nat -> bool.bool) -> H -> (H -> H -> H) -> (nat.nat -> H) -> H
 postulate axiom::bigop::O : (H : Set) -> connectives.equal ((nat.nat -> bool.bool) -> H -> (H -> H -> H) -> (nat.nat -> H) -> H) (bigop (H) nat.O) (bigop::body (H) nat.O)
-eq::bigop::O : _
-eq::bigop::O = \(H : Set) -> ((((connectives.equal::leibniz) ((nat.nat -> bool.bool) -> H -> (H -> H -> H) -> (nat.nat -> H) -> H)) (bigop (H) nat.O)) (bigop::body (H) nat.O)) ((axiom::bigop::O) (H))
+eq::bigop::O : {j : Level} -> _
+eq::bigop::O {j} = \(H : Set) -> ((((connectives.equal::leibniz {_} {j}) ((nat.nat -> bool.bool) -> H -> (H -> H -> H) -> (nat.nat -> H) -> H)) (bigop (H) nat.O)) (bigop::body (H) nat.O)) ((axiom::bigop::O) (H))
 
-sym::eq::bigop::O : _
-sym::eq::bigop::O = \(H : Set) -> ((((leibniz.sym::leibniz) ((nat.nat -> bool.bool) -> H -> (H -> H -> H) -> (nat.nat -> H) -> H)) (bigop (H) nat.O)) (bigop::body (H) nat.O)) ((eq::bigop::O) (H))
+sym::eq::bigop::O : {j : Level} -> _
+sym::eq::bigop::O {j} = \(H : Set) -> ((((leibniz.sym::leibniz {_} {j}) ((nat.nat -> bool.bool) -> H -> (H -> H -> H) -> (nat.nat -> H) -> H)) (bigop (H) nat.O)) (bigop::body (H) nat.O)) ((eq::bigop::O) (H))
 
 postulate axiom::bigop::S : (H : Set) -> forall (n : nat.nat) -> connectives.equal ((nat.nat -> bool.bool) -> H -> (H -> H -> H) -> (nat.nat -> H) -> H) (bigop (H) (nat.S n)) (bigop::body (H) (nat.S n))
-eq::bigop::S : _
-eq::bigop::S = \(H : Set) -> \(n : nat.nat) -> ((((connectives.equal::leibniz) ((nat.nat -> bool.bool) -> H -> (H -> H -> H) -> (nat.nat -> H) -> H)) (bigop (H) (nat.S n))) (bigop::body (H) (nat.S n))) (((axiom::bigop::S) (H)) (n))
+eq::bigop::S : {j : Level} -> _
+eq::bigop::S {j} = \(H : Set) -> \(n : nat.nat) -> ((((connectives.equal::leibniz {_} {j}) ((nat.nat -> bool.bool) -> H -> (H -> H -> H) -> (nat.nat -> H) -> H)) (bigop (H) (nat.S n))) (bigop::body (H) (nat.S n))) (((axiom::bigop::S) (H)) (n))
 
-sym::eq::bigop::S : _
-sym::eq::bigop::S = \(H : Set) -> \(n : nat.nat) -> ((((leibniz.sym::leibniz) ((nat.nat -> bool.bool) -> H -> (H -> H -> H) -> (nat.nat -> H) -> H)) (bigop (H) (nat.S n))) (bigop::body (H) (nat.S n))) (((eq::bigop::S) (H)) (n))
+sym::eq::bigop::S : {j : Level} -> _
+sym::eq::bigop::S {j} = \(H : Set) -> \(n : nat.nat) -> ((((leibniz.sym::leibniz {_} {j}) ((nat.nat -> bool.bool) -> H -> (H -> H -> H) -> (nat.nat -> H) -> H)) (bigop (H) (nat.S n))) (bigop::body (H) (nat.S n))) (((eq::bigop::S) (H)) (n))
 
 postulate axiom::bigop::body::O : (H : Set) -> connectives.equal ((nat.nat -> bool.bool) -> H -> (H -> H -> H) -> (nat.nat -> H) -> H) (bigop::body (H) nat.O) (\(p : (nat.nat -> bool.bool)) -> \(nil : H) -> \(op : (H -> H -> H)) -> \(f : (nat.nat -> H)) -> nil)
-eq::bigop::body::O : _
-eq::bigop::body::O = \(H : Set) -> ((((connectives.equal::leibniz) ((nat.nat -> bool.bool) -> H -> (H -> H -> H) -> (nat.nat -> H) -> H)) (bigop::body (H) nat.O)) (\(p : (nat.nat -> bool.bool)) -> \(nil : H) -> \(op : (H -> H -> H)) -> \(f : (nat.nat -> H)) -> nil)) ((axiom::bigop::body::O) (H))
+eq::bigop::body::O : {j : Level} -> _
+eq::bigop::body::O {j} = \(H : Set) -> ((((connectives.equal::leibniz {_} {j}) ((nat.nat -> bool.bool) -> H -> (H -> H -> H) -> (nat.nat -> H) -> H)) (bigop::body (H) nat.O)) (\(p : (nat.nat -> bool.bool)) -> \(nil : H) -> \(op : (H -> H -> H)) -> \(f : (nat.nat -> H)) -> nil)) ((axiom::bigop::body::O) (H))
 
-sym::eq::bigop::body::O : _
-sym::eq::bigop::body::O = \(H : Set) -> ((((leibniz.sym::leibniz) ((nat.nat -> bool.bool) -> H -> (H -> H -> H) -> (nat.nat -> H) -> H)) (bigop::body (H) nat.O)) (\(p : (nat.nat -> bool.bool)) -> \(nil : H) -> \(op : (H -> H -> H)) -> \(f : (nat.nat -> H)) -> nil)) ((eq::bigop::body::O) (H))
+sym::eq::bigop::body::O : {j : Level} -> _
+sym::eq::bigop::body::O {j} = \(H : Set) -> ((((leibniz.sym::leibniz {_} {j}) ((nat.nat -> bool.bool) -> H -> (H -> H -> H) -> (nat.nat -> H) -> H)) (bigop::body (H) nat.O)) (\(p : (nat.nat -> bool.bool)) -> \(nil : H) -> \(op : (H -> H -> H)) -> \(f : (nat.nat -> H)) -> nil)) ((eq::bigop::body::O) (H))
 
 postulate axiom::bigop::body::S : (H : Set) -> forall (n : nat.nat) -> connectives.equal ((nat.nat -> bool.bool) -> H -> (H -> H -> H) -> (nat.nat -> H) -> H) (bigop::body (H) (nat.S n)) (\(p : (nat.nat -> bool.bool)) -> \(nil : H) -> \(op : (H -> H -> H)) -> \(f : (nat.nat -> H)) -> bool.match::bool::type (H) (op (f n) (bigop (H) n p nil op f)) (bigop (H) n p nil op f) (p n))
-eq::bigop::body::S : _
-eq::bigop::body::S = \(H : Set) -> \(n : nat.nat) -> ((((connectives.equal::leibniz) ((nat.nat -> bool.bool) -> H -> (H -> H -> H) -> (nat.nat -> H) -> H)) (bigop::body (H) (nat.S n))) (\(p : (nat.nat -> bool.bool)) -> \(nil : H) -> \(op : (H -> H -> H)) -> \(f : (nat.nat -> H)) -> bool.match::bool::type (H) (op (f n) (bigop (H) n p nil op f)) (bigop (H) n p nil op f) (p n))) (((axiom::bigop::body::S) (H)) (n))
+eq::bigop::body::S : {j : Level} -> _
+eq::bigop::body::S {j} = \(H : Set) -> \(n : nat.nat) -> ((((connectives.equal::leibniz {_} {j}) ((nat.nat -> bool.bool) -> H -> (H -> H -> H) -> (nat.nat -> H) -> H)) (bigop::body (H) (nat.S n))) (\(p : (nat.nat -> bool.bool)) -> \(nil : H) -> \(op : (H -> H -> H)) -> \(f : (nat.nat -> H)) -> bool.match::bool::type (H) (op (f n) (bigop (H) n p nil op f)) (bigop (H) n p nil op f) (p n))) (((axiom::bigop::body::S) (H)) (n))
 
-sym::eq::bigop::body::S : _
-sym::eq::bigop::body::S = \(H : Set) -> \(n : nat.nat) -> ((((leibniz.sym::leibniz) ((nat.nat -> bool.bool) -> H -> (H -> H -> H) -> (nat.nat -> H) -> H)) (bigop::body (H) (nat.S n))) (\(p : (nat.nat -> bool.bool)) -> \(nil : H) -> \(op : (H -> H -> H)) -> \(f : (nat.nat -> H)) -> bool.match::bool::type (H) (op (f n) (bigop (H) n p nil op f)) (bigop (H) n p nil op f) (p n))) (((eq::bigop::body::S) (H)) (n))
+sym::eq::bigop::body::S : {j : Level} -> _
+sym::eq::bigop::body::S {j} = \(H : Set) -> \(n : nat.nat) -> ((((leibniz.sym::leibniz {_} {j}) ((nat.nat -> bool.bool) -> H -> (H -> H -> H) -> (nat.nat -> H) -> H)) (bigop::body (H) (nat.S n))) (\(p : (nat.nat -> bool.bool)) -> \(nil : H) -> \(op : (H -> H -> H)) -> \(f : (nat.nat -> H)) -> bool.match::bool::type (H) (op (f n) (bigop (H) n p nil op f)) (bigop (H) n p nil op f) (p n))) (((eq::bigop::body::S) (H)) (n))
 
 bigop::Strue : _
 bigop::Strue = \(B : Set) -> \(k : nat.nat) -> \(p : nat.nat -> bool.bool) -> \(nil : B) -> \(op : B -> B -> B) -> \(f : nat.nat -> B) -> ((((sym::eq::bigop::S) (B)) (k)) (\(y : ((nat.nat -> bool.bool) -> B -> (B -> B -> B) -> (nat.nat -> B) -> B)) -> (logic.eq (bool.bool) (p k) bool.true) -> logic.eq (B) (y (\(i : nat.nat) -> p i) nil op (\(i : nat.nat) -> f i)) (op (f k) (bigop (B) k (\(i : nat.nat) -> p i) nil op (\(i : nat.nat) -> f i))))) (((((sym::eq::bigop::body::S) (B)) (k)) (\(y : ((nat.nat -> bool.bool) -> B -> (B -> B -> B) -> (nat.nat -> B) -> B)) -> (logic.eq (bool.bool) (p k) bool.true) -> logic.eq (B) (y (\(i : nat.nat) -> p i) nil op (\(i : nat.nat) -> f i)) (op (f k) (bigop (B) k (\(i : nat.nat) -> p i) nil op (\(i : nat.nat) -> f i))))) (\(H : logic.eq (bool.bool) (p k) bool.true) -> (((((((logic.eq::ind::r) (bool.bool)) (bool.true)) (\(x : bool.bool) -> logic.eq (B) (bool.match::bool::type (B) (op (f k) (bigop (B) k (\(i : nat.nat) -> p i) nil op (\(i : nat.nat) -> f i))) (bigop (B) k (\(i : nat.nat) -> p i) nil op (\(i : nat.nat) -> f i)) x) (op (f k) (bigop (B) k (\(i : nat.nat) -> p i) nil op (\(i : nat.nat) -> f i))))) ((((((bool.eq::match::bool::type::true) (B)) (op (f k) (bigop (B) k (\(i : nat.nat) -> p i) nil op (\(i : nat.nat) -> f i)))) (bigop (B) k (\(i : nat.nat) -> p i) nil op (\(i : nat.nat) -> f i))) (\(y : B) -> logic.eq (B) (bool.match::bool::type (B) (op (f k) (bigop (B) k (\(i : nat.nat) -> p i) nil op (\(i : nat.nat) -> f i))) (bigop (B) k (\(i : nat.nat) -> p i) nil op (\(i : nat.nat) -> f i)) bool.true) y)) (((logic.refl) (B)) (bool.match::bool::type (B) (op (f k) (bigop (B) k (\(i : nat.nat) -> p i) nil op (\(i : nat.nat) -> f i))) (bigop (B) k (\(i : nat.nat) -> p i) nil op (\(i : nat.nat) -> f i)) bool.true)))) (p k)) (H))))
