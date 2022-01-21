@@ -47,9 +47,10 @@ pred = \(n : nat) -> match::nat::type (nat) O (\(p : nat) -> p) n
 not::zero : _
 not::zero = \(n : nat) -> match::nat::type _ connectives.False (\(p : nat) -> connectives.True) n
 
-postulate le : nat -> nat -> Set
-postulate le::n : forall (n : nat) -> le n n
-postulate le::S : forall (n : nat) -> forall (m : nat) -> (le n m) -> le n (S m)
+data le : nat -> nat -> Set where
+  le::n : (n : nat) -> le n n
+  le::S : (n : nat) -> (m : nat) -> le n m -> le n (S m)
+
 postulate match::le::prop : forall (n : nat) -> forall (return : (nat -> Set)) -> (return n) -> (forall (m : nat) -> return (S m)) -> forall (m : nat) -> (le n m) -> return m
 postulate le::ind : forall (n : nat) -> forall (Q : (nat -> Set)) -> (Q n) -> (forall (m : nat) -> (le n m) -> (Q m) -> Q (S m)) -> forall (m : nat) -> (le n m) -> Q m
 lt : _

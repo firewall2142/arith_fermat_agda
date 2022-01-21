@@ -6,8 +6,9 @@ open import div_mod
 open import logic
 open import nat
 open import relations
-postulate divides : nat.nat -> nat.nat -> Set
-postulate quotient : forall (n : nat.nat) -> forall (m : nat.nat) -> forall (q : nat.nat) -> (logic.eq (nat.nat) m (nat.times n q)) -> divides n m
+data divides : nat.nat -> nat.nat -> Set where
+  quotient : forall (n : nat.nat) -> forall (m : nat.nat) -> forall (q : nat.nat) -> (logic.eq (nat.nat) m (nat.times n q)) -> divides n m
+
 postulate match::divides::prop : forall (n : nat.nat) -> forall (m : nat.nat) -> forall (return::type : Set) -> (forall (q : nat.nat) -> (logic.eq (nat.nat) m (nat.times n q)) -> return::type) -> (divides n m) -> return::type
 reflexive::divides : _
 reflexive::divides = \(x : nat.nat) -> ((((quotient) (x)) (x)) (nat.S nat.O)) (((((((logic.rewrite::r) (nat.nat)) (nat.times x (nat.S nat.O))) (\(:::: : nat.nat) -> logic.eq (nat.nat) :::: (nat.times x (nat.S nat.O)))) (((logic.refl) (nat.nat)) (nat.times x (nat.S nat.O)))) (x)) ((nat.times::n::1) (x)))
